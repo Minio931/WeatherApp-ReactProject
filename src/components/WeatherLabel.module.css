@@ -1,0 +1,19 @@
+.label {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  padding-top: 15px;
+}
+.label svg {
+  transform: scale(2.6) translateY(-1px);
+
+  z-index: 0;
+}
+.label h1 {
+  width: 12rem;
+  display: block;
+  z-index: 2;
+}

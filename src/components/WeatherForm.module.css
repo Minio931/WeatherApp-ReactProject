@@ -1,0 +1,72 @@
+.form-controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 2rem;
+}
+
+.card-alignment {
+  margin: 0 auto;
+  margin-top: 20vh;
+  width: 40rem;
+  min-width: 5rem;
+  height: 20rem;
+  background-color: rgba(85, 77, 71, 0.648);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  color: white;
+}
+
+.input {
+  border: none;
+  border-bottom: 2px solid white;
+  background-color: inherit;
+  padding: 0.2rem;
+  font-size: 1.5rem;
+  font-weight: 200;
+  text-align: center;
+  color: white;
+}
+.input .invalid {
+  border-bottom: 2px solid red;
+}
+.input:focus {
+  outline: none;
+}
+
+.search {
+  width: 5rem;
+  height: 2rem;
+  border-radius: 20px;
+  border: 2px solid white;
+  background-color: inherit;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+.search:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.search:disabled:hover,
+.search:disabled:focus {
+  border: 2px solid white;
+  background: none;
+  color: white;
+}
+
+.search:hover,
+.search:focus {
+  background: linear-gradient(
+    90deg,
+    rgba(196, 196, 199, 1) 0%,
+    rgba(244, 244, 244, 1) 100%
+  );
+  border: none;
+  color: rgba(9, 9, 9, 0.682);
+}
