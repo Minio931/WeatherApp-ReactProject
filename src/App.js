@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, Fragment } from "react";
 import "./App.css";
 import WeatherForm from "./components/WeatherForm";
+import WeatherCard from "./components/WeatherCard/WeatherCard";
 
 function App() {
-  const [WeatherData, setIsWeatherData] = useState();
+  const [weatherData, setIsWeatherData] = useState();
+  const [dataRecived, setDataRecived] = useState(false);
   const appid = "92ec983844507f607bf6431e3ffd98de";
 
   const fetchWeather = async (cityName) => {
@@ -34,10 +36,10 @@ function App() {
       const description = responseWeatherData.weather.map(
         (item) => item.description
       );
-
-      console.log(description);
+      const weatherIcon = responseWeatherData.weather.map((item) => item.icon);
+      console.log(weatherIcon);
       setIsWeatherData({
-        temp: Math.round(responseWeatherData.main.temp),
+        temp: responseWeatherData.main.temp,
         pressure: responseWeatherData.main.pressure,
         tempFeelsLike: responseWeatherData.main.feels_like,
         description: description,
@@ -46,13 +48,20 @@ function App() {
           deg: responseWeatherData.wind.deg,
           speed: responseWeatherData.wind.speed,
         },
+        icon: weatherIcon,
       });
+      setDataRecived(true);
     } catch (err) {
       console.log(err);
     }
   };
 
-  return <WeatherForm onSubmit={fetchWeather} />;
+  return (
+    <>
+      <WeatherForm onSubmit={fetchWeather} />
+      {dataRecived && <WeatherCard data={weatherData} />}
+    </>
+  );
 }
 
 export default App;
