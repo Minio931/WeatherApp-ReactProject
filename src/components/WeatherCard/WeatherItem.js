@@ -25,7 +25,7 @@ const WeatherItem = (props) => {
     windDirection = "NW";
   }
 
-  const weatherIcon = `http://openweathermap.org/img/wn/${props.icon}@2x.png`;
+  const weatherIcon = `http://openweathermap.org/img/wn/${props.icon[0]}@2x.png`;
   return (
     <Card className={classes.item}>
       <div className={classes["main-data"]}>

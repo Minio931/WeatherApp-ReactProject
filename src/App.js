@@ -2,64 +2,47 @@ import { useState, Fragment } from "react";
 import "./App.css";
 import WeatherForm from "./components/WeatherForm";
 import WeatherCard from "./components/WeatherCard/WeatherCard";
+import useHttp from "./hooks/use-http";
 
 function App() {
-  const [weatherData, setIsWeatherData] = useState();
-  const [dataRecived, setDataRecived] = useState(false);
-  const appid = "92ec983844507f607bf6431e3ffd98de";
+  const [weatherData, setWeatherData] = useState([]);
 
-  const fetchWeather = async (cityName) => {
-    try {
-      const response = await fetch(
-        `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}}&limit=1&&appid=${appid}`
-      );
-      const responseData = await response.json();
+  const { sendRequest: fetchWeather, isLoading, hasError } = useHttp();
 
-      let geoLocation = {};
+  const transformWeatherData = (data) => {
+    const loadedWeatherData = [];
 
-      for (const key in responseData) {
-        geoLocation = {
-          lat: responseData[key].lat,
-          lon: responseData[key].lon,
-        };
-      }
+    loadedWeatherData.push({
+      temp: data.main.temp,
+      pressure: data.main.pressure,
+      tempFeelsLike: data.main.feels_like,
+      description: data.weather.map((item) => item.description),
+      clouds: data.clouds.all,
+      wind: {
+        deg: data.wind.deg,
+        speed: data.wind.speed,
+      },
+      icon: data.weather.map((item) => item.icon),
+    });
 
-      const responseWeather = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${geoLocation.lat}&lon=${geoLocation.lon}&units=metric&appid=${appid}`
-      );
-      const responseWeatherData = await responseWeather.json();
+    setWeatherData(loadedWeatherData);
+  };
 
-      if (!responseWeather.ok) {
-        throw new Error("Invalid input");
-      }
-
-      const description = responseWeatherData.weather.map(
-        (item) => item.description
-      );
-      const weatherIcon = responseWeatherData.weather.map((item) => item.icon);
-      console.log(weatherIcon);
-      setIsWeatherData({
-        temp: responseWeatherData.main.temp,
-        pressure: responseWeatherData.main.pressure,
-        tempFeelsLike: responseWeatherData.main.feels_like,
-        description: description,
-        clouds: responseWeatherData.clouds.all,
-        wind: {
-          deg: responseWeatherData.wind.deg,
-          speed: responseWeatherData.wind.speed,
-        },
-        icon: weatherIcon,
-      });
-      setDataRecived(true);
-    } catch (err) {
-      console.log(err);
-    }
+  const getFetchValues = (cityNameValue) => {
+    fetchWeather(
+      {
+        url: "https://api.openweathermap.org/data/2.5/weather?",
+        cityName: cityNameValue,
+      },
+      transformWeatherData
+    );
   };
 
   return (
     <>
-      <WeatherForm onSubmit={fetchWeather} />
-      {dataRecived && <WeatherCard data={weatherData} />}
+      <WeatherForm onSubmit={getFetchValues} />
+
+      <WeatherCard data={weatherData} isLoading={isLoading} error={hasError} />
     </>
   );
 }
