@@ -27,21 +27,29 @@ const WeatherItem = (props) => {
 
   const weatherIcon = `http://openweathermap.org/img/wn/${props.icon[0]}@2x.png`;
   return (
-    <Card className={classes.item}>
+    <Card id={props.id} className={classes.item}>
       <div className={classes["main-data"]}>
-        <div>
+        <div className={classes.image}>
           <img src={weatherIcon} alt="weather icon" />
         </div>
-        <h1>{props.temp}&#176;C</h1>
-        <span>feels: {props.tempFeelsLike}</span>
+        <div className={classes.temperature}>
+          <h1>{props.temp}&#176;C</h1>
+          <span>feels: {props.tempFeelsLike}</span>
+        </div>
+      </div>
+      <div className={classes["city-info"]}>
+        <span className={classes.city}>
+          {props.name}, {props.country}
+        </span>
+        <span className={classes.time}>{props.time}</span>
       </div>
       <div className={classes["additional-data"]}>
-        <span>
+        <span className={classes.wind}>
           Wind: {props.wind.speed} km/h <br />
           Direction: {windDirection}
         </span>
 
-        <span>
+        <span className={classes.clouds}>
           {props.description} <br />
           Clouds: {props.clouds}%
         </span>

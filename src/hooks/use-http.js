@@ -11,7 +11,7 @@ const useHttp = () => {
     setHasError(null);
     try {
       const response = await fetch(
-        `${requestConfig.url}q=${requestConfig.cityName}&units=metric&appid=${appid}`
+        `${requestConfig.url}${requestConfig.forecastType}?q=${requestConfig.cityName}&units=metric&appid=${appid}`
       );
 
       if (!response.ok) {
@@ -19,7 +19,9 @@ const useHttp = () => {
       }
       const responseData = await response.json();
 
-      applyData(responseData);
+      const isCurrent = requestConfig.forecastType === "weather" ? true : false;
+
+      applyData(responseData, isCurrent);
     } catch (err) {
       setHasError(err.message || "Something went wrong");
     }
