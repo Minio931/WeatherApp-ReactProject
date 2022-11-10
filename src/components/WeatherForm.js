@@ -6,43 +6,36 @@ import classes from "./WeatherForm.module.css";
 
 const WeatherForm = (props) => {
   const [enteredCity, setEnteredCity] = useState("");
-  const [weatherForecast, setWeatherForecast] = useState("");
-  const [isDataSubmitted, setIsDataSubmitted] = useState(false);
+
+  const [showLabel, setShowLabel] = useState(true);
 
   const inputChangeHandler = (event) => {
     setEnteredCity(event.target.value);
   };
 
-  const selectChangeHandler = (event) => {
-    setWeatherForecast(event.target.value);
-  };
   const isInputInvalid = enteredCity === "" ? true : false;
 
   const onSubmissionHandler = (event) => {
     event.preventDefault();
-    setIsDataSubmitted(true);
-    props.onSubmit(enteredCity, weatherForecast);
+    setShowLabel(false);
+    props.onSubmit(enteredCity);
   };
-
-  const displayClass = isDataSubmitted ? ".display" : "";
 
   return (
     <Card className={classes["card-alignment"]}>
-      <WeatherLabel className={displayClass} />
+      {showLabel && <WeatherLabel />}
       <form onSubmit={onSubmissionHandler}>
         <div className={classes["form-controls"]}>
-          <label htmlFor="city">Look at weather in your city</label>
+          {showLabel && (
+            <label htmlFor="city">Look at weather in your city</label>
+          )}
           <input
             className={classes.input}
             id="city"
             onChange={inputChangeHandler}
             value={enteredCity}
           />
-          <select value={weatherForecast} onChange={selectChangeHandler}>
-            <option value="">---Choose-Forecast-Type---</option>
-            <option value="weather">Current Weather</option>
-            <option value="forecast">5day Forecast</option>
-          </select>
+
           <button disabled={isInputInvalid} className={classes.search}>
             Search
           </button>

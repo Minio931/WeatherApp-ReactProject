@@ -1,0 +1,92 @@
+.item {
+  background-color: rgba(85, 77, 71, 0.648);
+  width: 50%;
+  height: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 25% 75%;
+  gap: 1rem;
+}
+
+.temp-data {
+  grid-column: 1/2;
+  grid-row: 1/2;
+  display: grid;
+  justify-self: flex-start;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 100%;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.temp-data img {
+  grid-row: 1/2;
+  grid-column: 1/2;
+  width: 100%;
+  display: block;
+}
+
+.temp {
+  grid-row: 1/2;
+  grid-column: 2/3;
+  color: white;
+  align-items: center;
+}
+.temp-data .main-temp,
+.feels-like {
+  display: block;
+}
+.main-temp {
+  font-size: 1.5rem;
+  text-align: left;
+}
+
+.feels-like {
+  font-size: 0.8rem;
+  text-align: left;
+}
+
+.city-data {
+  grid-column: 2/3;
+  grid-row: 1/2;
+  text-align: right;
+  flex-direction: column;
+  color: white;
+}
+.city-name,
+.date-time,
+.description {
+  display: block;
+}
+.city-name {
+  font-size: 1.3rem;
+}
+.date-time {
+  font-size: 0.8rem;
+}
+.description {
+  font-size: 1rem;
+}
+
+.chart {
+  grid-column: 1 / span 2;
+  grid-row: 2/3;
+  height: auto;
+  display: grid;
+  align-items: center;
+  padding: 1rem;
+  grid-template-columns: 100%;
+  grid-template-rows: 10% 90%;
+}
+.controls {
+  grid-column: 1/2;
+  grid-row: 1/2;
+}
+.graph {
+  grid-column: 1/2;
+  grid-row: 2 / 3;
+  opacity: 1;
+  background-color: inherit;
+}

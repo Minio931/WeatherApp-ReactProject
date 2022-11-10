@@ -1,12 +1,6 @@
 import classes from "./WeatherLabel.module.css";
-import { useEffect, useState } from "react";
 
 const WeatherLabel = (props) => {
-  const [labelClasses, setLabelClasses] = useState(classes.label);
-
-  useEffect(() => {
-    setLabelClasses(`${classes.label} ${props.className}`);
-  }, [props.className]);
   const WeatherIcon = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -21,7 +15,7 @@ const WeatherLabel = (props) => {
   );
 
   return (
-    <div className={labelClasses}>
+    <div className={classes.label}>
       <h1>WeatherApp</h1>
       {WeatherIcon}
     </div>
