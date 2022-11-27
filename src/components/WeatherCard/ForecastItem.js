@@ -1,5 +1,7 @@
 import Card from "../UI/Card";
 import classes from "./ForecastItem.module.css";
+import { useState } from "react";
+import WindItem from "./WindItem";
 
 import { Bar } from "react-chartjs-2";
 import {
@@ -22,12 +24,50 @@ ChartJS.register(
 );
 
 const ForecastItem = (props) => {
+  const [dataset, setDataset] = useState("temperature");
+  const buttonHandler = (event) => {
+    setDataset(event.target.value);
+  };
+  console.log(props.weatherInfo[0][0].wind);
+  let content;
+  let color = "";
+  let datasetToDisplay = [];
+  let text = "Temperature";
+  if (dataset === "temperature") {
+    datasetToDisplay = props.weatherInfo[0].map((item) => item.temp);
+    color = "rgba(255, 82, 40, 1) ";
+    text = "Temperature";
+  } else if (dataset === "clouds") {
+    datasetToDisplay = props.weatherInfo[0].map((item) => item.clouds);
+    color = "rgba(89, 145, 210, 1)";
+    text = "Clouds (%)";
+  } else if (dataset === "wind") {
+    text = "Wind";
+    content = (
+      <div className={classes.wind}>
+        {props.weatherInfo[0].map((item) => (
+          <WindItem
+            data={item.wind}
+            time={item.time.substring(
+              item.time.indexOf(" "),
+              item.time.length - 3
+            )}
+          />
+        ))}
+      </div>
+    );
+  }
   const options = {
     responsive: true,
     aspectRatio: 2 | 1,
     plugins: {
       legend: {
         display: false,
+      },
+      title: {
+        display: true,
+        text: text,
+        color: "rgba(255, 255, 255, 1)",
       },
     },
 
@@ -56,9 +96,9 @@ const ForecastItem = (props) => {
         label: {
           display: false,
         },
-        data: props.weatherInfo[0].map((item) => item.temp),
+        data: datasetToDisplay,
         color: "white",
-        backgroundColor: "yellow",
+        backgroundColor: color,
       },
     ],
   };
@@ -91,6 +131,10 @@ const ForecastItem = (props) => {
     props.weatherInfo[0][Math.floor(props.weatherInfo[0].length / 2)]
       .description[0];
 
+  if (dataset !== "wind") {
+    content = <Bar className={classes.graph} options={options} data={data} />;
+  }
+
   return (
     <Card className={classes.item}>
       <div className={classes["temp-data"]}>
@@ -113,11 +157,18 @@ const ForecastItem = (props) => {
       </div>
       <div className={classes.chart}>
         <div className={classes.controls}>
-          <button>Temperature</button>
-          <button>Clouds</button>
-          <button>Wind</button>
+          <button onClick={buttonHandler} value="temperature">
+            Temperature
+          </button>
+          <button onClick={buttonHandler} value="clouds">
+            Clouds
+          </button>
+          <button onClick={buttonHandler} value="wind">
+            Wind
+          </button>
         </div>
-        <Bar className={classes.graph} options={options} data={data} />
+        {/* <Bar className={classes.graph} options={options} data={data} /> */}
+        {content}
       </div>
     </Card>
   );

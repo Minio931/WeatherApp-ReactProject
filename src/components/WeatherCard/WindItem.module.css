@@ -1,0 +1,60 @@
+.wind-item {
+  background-color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
+  color: white;
+}
+.wind-item__speed {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.wind-item__direction {
+  margin: 0;
+  position: relative;
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+}
+
+.firstLine {
+  position: absolute;
+  width: 10px;
+  height: 2px;
+  padding: 0;
+  margin: 0;
+  top: 12px;
+  left: 12px;
+  background-color: white;
+  transform: rotate(45deg);
+}
+.secondLine {
+  position: absolute;
+  padding: 0;
+  margin: 0 auto;
+  width: 20px;
+  height: 2px;
+  top: 20px;
+  transform: rotate(90deg);
+  left: 4px;
+  background-color: white;
+}
+.thirdLine {
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  width: 10px;
+  height: 2px;
+  top: 12px;
+  left: 6px;
+  background-color: white;
+  transform: rotate(-45deg);
+}
