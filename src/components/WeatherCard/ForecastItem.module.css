@@ -1,6 +1,6 @@
 .item {
   background-color: rgba(85, 77, 71, 0.648);
-  width: 50%;
+  width: 45%;
   height: auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -89,4 +89,25 @@
   grid-row: 2 / 3;
   opacity: 1;
   background-color: inherit;
+}
+
+.controls button {
+  background-color: inherit;
+  border: none;
+  color: white;
+  font-weight: bold;
+}
+
+.controls button:hover,
+.controls button:focus {
+  cursor: pointer;
+  border-bottom: 2px solid white;
+}
+
+.wind {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 5%;
+  align-items: center;
 }

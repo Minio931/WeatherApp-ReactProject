@@ -2,25 +2,7 @@ import ForecastItem from "./ForecastItem";
 import ChooseDay from "./ChooseDay";
 import classes from "./WeatherForecastItem.module.css";
 
-import { useState } from "react";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
-
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-);
+import { useEffect, useState } from "react";
 
 const pullData = (day, index, data) => {
   day.push(
@@ -34,6 +16,10 @@ const pullData = (day, index, data) => {
 
 const WeatherForecastItem = (props) => {
   const [pickedDay, setPickedDay] = useState(null);
+  useEffect(() => {
+    setPickedDay(null);
+  }, [props.data]);
+
   const weatherData = props.data;
   const dayOne = [];
   const dayTwo = [];
@@ -61,30 +47,7 @@ const WeatherForecastItem = (props) => {
     fifthDay: dayFive,
   };
 
-  const options = {
-    responsive: true,
-    aspectRatio: 2 | 1,
-    plugins: {
-      legend: {
-        display: false,
-      },
-    },
-
-    scales: {
-      x: {
-        ticks: {
-          color: "white",
-        },
-      },
-      y: {
-        ticks: {
-          color: "white",
-        },
-      },
-    },
-  };
-
-  let content;
+  let content = <div></div>;
 
   if (props.isLoading) {
     content = <p>Loading...</p>;
@@ -96,33 +59,11 @@ const WeatherForecastItem = (props) => {
   const pickDay = (day) => {
     setPickedDay(day);
   };
-  if (props.isSent) {
+
+  if (props.isSent && !props.isLoading && !props.error) {
     const displayDay = pickedDay ? pickedDay : dayOne;
 
-    const labels = pickedDay
-      ? pickedDay[0].map((item) =>
-          item.time.substring(item.time.indexOf(" "), item.time.length - 3)
-        )
-      : dayOne[0].map((item) =>
-          item.time.substring(item.time.indexOf(" "), item.time.length - 3)
-        );
-
-    const data = {
-      labels,
-      datasets: [
-        {
-          label: {
-            display: false,
-          },
-          data: displayDay[0].map((item) => item.temp),
-          color: "white",
-          backgroundColor: "yellow",
-        },
-      ],
-    };
-    content = (
-      <ForecastItem options={options} data={data} weatherInfo={displayDay} />
-    );
+    content = <ForecastItem weatherInfo={displayDay} />;
   }
 
   return (

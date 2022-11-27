@@ -1,0 +1,27 @@
+.button {
+  background-color: rgba(85, 77, 71, 0.648); /* Green */
+  border: none;
+  color: white;
+  padding: 15px;
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.button:hover {
+  background-color: white;
+  color: black;
+}
+
+.form-controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  width: 20px;
+}
