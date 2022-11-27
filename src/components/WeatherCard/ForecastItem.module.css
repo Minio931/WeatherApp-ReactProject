@@ -1,6 +1,6 @@
 .item {
   background-color: rgba(85, 77, 71, 0.648);
-  width: 50%;
+  width: 45%;
   height: auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
