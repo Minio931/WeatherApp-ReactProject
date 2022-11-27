@@ -1,9 +1,0 @@
-.item-holder {
-  display: flex;
-  margin-top: 3rem;
-  gap: 2rem;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-}
