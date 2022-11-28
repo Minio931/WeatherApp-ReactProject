@@ -13,12 +13,12 @@ Project is created with:
  
 ## Screenshots
 ![App Screenshot](./weather.gif) <br />
-<img src="./screens/weather3.png" width="25%"> 
-<img src="./screens/weather1.png" width="25%"> 
-<img src="./screens/weather2.png" width="25%">
-<img src="./screens/weather4.png" width="25%"> 
-<img src="./screens/weather5.png" width="25%"> 
-<img src="./screens/weather6.png" width="25%"> 
+<img src="./screens/weather3.png" width="50%"> 
+<img src="./screens/weather1.png" width="50%"> <br />
+<img src="./screens/weather2.png" width="50%">
+<img src="./screens/weather4.png" width="50%"> <br />
+<img src="./screens/weather5.png" width="50%"> 
+<img src="./screens/weather6.png" width="50%"> 
 
 
 ## API
