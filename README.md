@@ -13,9 +13,9 @@ Project is created with:
  
 ## Screenshots
 
-![App Screenshot](./screens/weather1.jpg)
-![App Screenshot](./screens/weather2.jpg)
-![App Screenshot](./screens/weather3.jpg)
-![App Screenshot](./screens/weather4.jpg)
-![App Screenshot](./screens/weather5.jpg)
+![App Screenshot](./screens/weather1.png)
+![App Screenshot](./screens/weather2.png)
+![App Screenshot](./screens/weather3.png)
+![App Screenshot](./screens/weather4.png)
+![App Screenshot](./screens/weather5.png)
 
