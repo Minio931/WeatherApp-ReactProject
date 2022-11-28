@@ -13,7 +13,7 @@ Project is created with:
  
 ## Screenshots
 ![App Screenshot](./weather.gif)
-<img src="./screens/weather3.png"> 
+<img src="./screens/weather3.png" width="25%"> 
 
 
 
