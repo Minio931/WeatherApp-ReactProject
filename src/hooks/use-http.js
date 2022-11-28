@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 
 const useHttp = () => {
-  const appid = "92ec983844507f607bf6431e3ffd98de";
+  const appid = "{Your_AppID}";
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(null);
 
